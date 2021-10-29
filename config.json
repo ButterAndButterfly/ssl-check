@@ -1,0 +1,12 @@
+[
+    {
+        "host": "www.baidu.com",
+        "sni": "www.baidu.com",
+        "remarks": "百度"
+    },
+    {
+        "host": "cloudflare.com",
+        "sni": "cloudflare.com",
+        "remarks": "Cloudflare CDN证书"
+    }
+]

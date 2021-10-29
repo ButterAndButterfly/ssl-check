@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>SSL 证书检查</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="description" content="SSL 证书检查">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
+        integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
+    <style>
+        .item-title {
+            color: rgba(0, 0, 0, .54)
+        }
+
+        .main-card {
+            margin: 30px auto;
+            max-width: 800px
+        }
+
+        .t-c-success {
+            color: #66bb6a
+        }
+
+        .t-c-error {
+            color: #f44336
+        }
+
+        .t-c-warning {
+            color: #ffb74d
+        }
+
+        footer a,
+        footer span {
+            color: rgba(0, 0, 0, .6)
+        }
+    </style>
+</head>
+
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-loaded">
+    <div class="mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar mdui-color-theme"><a href="javascript:;" class="mdui-typo-title">证书透明</a>
+            <div class="mdui-toolbar-spacer"></div><a href="javascript:;" class="mdui-btn mdui-btn-icon"
+                mdui-menu="{target: '#appbar-menu'}"><i class="mdui-icon material-icons">more_vert</i></a>
+            <ul class="mdui-menu" id="appbar-menu">
+                <li class="mdui-menu-item"><a href="https://github.com/ButterAndButterfly/ssl-check" class="mdui-ripple">Github</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-card">
+        <div class="mdui-panel" id="result" mdui-panel="">
+
+        </div>
+    </div>
+    <footer class="mdui-text-center"><span>©<span id="nowYear">2021</span> nICEnnnnnnnLee</span><br><br></footer>
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
+        integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
+        crossorigin="anonymous"></script>
+    <script src="js/jquery.min.js"></script>
+    <script>$("#nowYear").text(new Date().getFullYear());
+        var ctJson = "./result.json?" + new Date().getTime() + Math.random();
+        $.getJSON(ctJson, function (data) {
+            $("#result-spinner").remove();
+            $.each(data, function (index, value) {
+                $("#result").append(`
+                    <div class="i-card mdui-panel-item">
+                        <div class="mdui-panel-item-header">
+                            <div class="mdui-panel-item-title">${value.domain} - ${value.remarks}</div>
+                            <div class="mdui-panel-item-summary t-c-${value.statuscolor}">${value.status}</div>
+                            <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                        </div>
+                        <div class="mdui-panel-item-body">
+                            <p><span class="item-title">最后检查</span> &nbsp;&nbsp;${value.check}</p>
+                            <p><span class="item-title">证书详情</span> &nbsp;&nbsp;${value.subject}</p>
+                            <p><span class="item-title">开始时间</span> &nbsp;&nbsp;${value.start}</p>
+                            <p><span class="item-title">到期时间</span> &nbsp;&nbsp;${value.expire}</p>
+                            <p><span class="item-title">剩余</span> &nbsp;&nbsp;${value.remain} 天</p>
+                            <p><span class="item-title">颁发机构</span> &nbsp;&nbsp;${value.issuer}</p>
+                        </div>
+                    </div>
+                `);
+            });
+        });</script>
+</body>
+
+</html>
