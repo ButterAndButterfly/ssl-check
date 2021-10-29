@@ -8,5 +8,10 @@
         "host": "cloudflare.com",
         "sni": "cloudflare.com",
         "remarks": "Cloudflare CDN证书"
-    }
+    },
+    {
+        "host": "github.com",
+        "sni": "github.com",
+        "remarks": "github.com"
+    },
 ]
