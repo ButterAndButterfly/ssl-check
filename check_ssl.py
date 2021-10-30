@@ -15,7 +15,7 @@ def get_server_certificate(host, port, sni):
 
 def get_ssl_status(host:str, sni:str, remarks: str, warning:int = 7, port:int = 443) -> dict:
     ssl_status = {
-        "host": host,
+        #"host": host,
         "domain": sni,
         "remarks": remarks,
         "subject": None, # *.baidu.com, baidu.com
