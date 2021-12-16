@@ -35,7 +35,7 @@ def get_ssl_status(host:str, sni:str, remarks: str, warning:int = 7, port:int = 
 
         dt_notAfter = time.strptime(x509.get_notAfter().decode("UTF-8"), '%Y%m%d%H%M%SZ')
         ssl_status["expire"] = time.strftime("%Y-%m-%d %H:%M:%S" , dt_notAfter)
-        dt_notBefore = time.strptime(x509.get_notAfter().decode("UTF-8"), '%Y%m%d%H%M%SZ')
+        dt_notBefore = time.strptime(x509.get_notBefore().decode("UTF-8"), '%Y%m%d%H%M%SZ')
         ssl_status["start"] = time.strftime("%Y-%m-%d %H:%M:%S" , dt_notBefore)
 
         t_notAfter = time.mktime(dt_notAfter)
